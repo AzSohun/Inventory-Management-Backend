@@ -4,7 +4,7 @@ using System.Text;
 
 namespace InventoryManagement.Application.DTOs
 {
-    internal class ProductDto
+    public class ProductDto
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; } = string.Empty;
