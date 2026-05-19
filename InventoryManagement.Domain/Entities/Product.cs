@@ -4,7 +4,7 @@ using System.Text;
 
 namespace InventoryManagement.Domain.Entities
 {
-    internal class Product
+    public class Product
     {
 
         public Guid Id { get; set; }
