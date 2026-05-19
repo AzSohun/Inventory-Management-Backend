@@ -4,7 +4,7 @@ using InventoryManagement.Application.DTOs;
 
 namespace InventoryManagement.Application.Validators
 {
-    internal class CreateProductDtoValidator: AbstractValidator<CreateProductDto>
+    public class CreateProductDtoValidator: AbstractValidator<CreateProductDto>
     {
 
         public CreateProductDtoValidator()
