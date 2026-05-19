@@ -4,7 +4,7 @@ using System.Text;
 
 namespace InventoryManagement.Application.DTOs
 {
-    internal class UpdateProductDto
+    public class UpdateProductDto
     {
         public string Name { get; set; } = string.Empty;
         public decimal Price { get; set; }
