@@ -2,9 +2,7 @@
 using InventoryManagement.Domain.Entities;
 using InventoryManagement.Infastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace InventoryManagement.Infastructure.Repositories
 {

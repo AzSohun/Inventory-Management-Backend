@@ -1,8 +1,6 @@
 ﻿using FluentValidation;
 using InventoryManagement.Application.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace InventoryManagement.Application.Validators
 {
