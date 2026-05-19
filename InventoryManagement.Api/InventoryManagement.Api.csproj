@@ -15,4 +15,8 @@
     <ProjectReference Include="..\InventoryManagement.Infastructure\InventoryManagement.Infastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
