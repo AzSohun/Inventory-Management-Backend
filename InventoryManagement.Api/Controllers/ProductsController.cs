@@ -26,6 +26,7 @@ namespace InventoryManagement.Api.Controllers
         }
 
 
+        [HttpPost]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProductDto dto)
         {
 
@@ -46,7 +47,23 @@ namespace InventoryManagement.Api.Controllers
 
             await _repository.CreateAsync(newProduct);
 
-            return Ok(newProduct);
+            return CreatedAtAction(nameof(GetProductById), new {id = newProduct.Id}, newProduct);
+
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProductById(Guid id)
+        {
+
+            var product = await _repository.GetByIdAsync(id);
+
+            if(product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
 
         }
 
