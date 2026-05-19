@@ -1,4 +1,9 @@
+using FluentValidation;
+using InventoryManagement.Application.DTOs;
+using InventoryManagement.Application.Interfaces;
+using InventoryManagement.Application.Validators;
 using InventoryManagement.Infastructure.Data;
+using InventoryManagement.Infastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +17,10 @@ builder.Services.AddDbContext<ProductDbContext>(options => {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString"));
 
 });
+
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IValidator<CreateProductDto>, CreateProductDtoValidator>();
 
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
