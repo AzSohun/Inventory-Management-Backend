@@ -26,7 +26,29 @@ namespace InventoryManagement.Api.Controllers
         }
 
 
-        
+        public async Task<IActionResult> CreateProduct([FromBody] CreateProductDto dto)
+        {
+
+            var validateResult = await _validator.ValidateAsync(dto);
+
+            if (!validateResult.IsValid)
+            {
+                return BadRequest(validateResult.Errors);
+            }
+
+            var newProduct = new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = dto.Name,
+                Price = dto.Price,
+                StockQuantity = dto.StockQuantity
+            };
+
+            await _repository.CreateAsync(newProduct);
+
+            return Ok(newProduct);
+
+        }
 
 
     }
