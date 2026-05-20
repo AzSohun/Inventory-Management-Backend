@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ProductDbContext>(options => {
 
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultString"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 });
 
