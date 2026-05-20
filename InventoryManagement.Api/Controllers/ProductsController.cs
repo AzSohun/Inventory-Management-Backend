@@ -44,8 +44,17 @@ namespace InventoryManagement.Api.Controllers
 
             await _repository.CreateAsync(newProduct);
 
-            return CreatedAtAction(nameof(GetProductById), new {id = newProduct.Id}, newProduct);
+            return CreatedAtAction(nameof(GetProductById), new { id = newProduct.Id }, newProduct);
 
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllProducts()
+        {
+            var products = await _repository.GetAllAsync();
+
+            return Ok(products);
         }
 
 
@@ -55,7 +64,7 @@ namespace InventoryManagement.Api.Controllers
 
             var product = await _repository.GetByIdAsync(id);
 
-            if(product == null)
+            if (product == null)
             {
                 return NotFound();
             }
@@ -63,5 +72,36 @@ namespace InventoryManagement.Api.Controllers
             return Ok(product);
 
         }
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] UpdateProductDto dto)
+        {
+
+            var existingUser = await _repository.GetByIdAsync(id);
+
+            if (existingUser == null) return NotFound();
+
+            existingUser.Name = dto.Name;
+            existingUser.Price = dto.Price;
+            existingUser.StockQuantity = dto.StockQuantity;
+            existingUser.UpdatedAt = DateTime.UtcNow;
+
+            await _repository.UpdateAsync(existingUser);
+
+            return NoContent();
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(Guid id)
+        {
+
+            await _repository.DeleteAsync(id);
+
+            return NoContent();
+
+        }
+
     }
 }
